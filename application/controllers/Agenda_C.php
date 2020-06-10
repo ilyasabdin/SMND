@@ -33,7 +33,7 @@ class Agenda_C extends CI_Controller {
 		if ($this->upload->do_upload('materi')){
 			return $filename;
 		}else{
-			if ($isupdate){return true;}
+			if ($isupdate){return $filename;}
 			d($this->upload->display_errors());
 		}
 		return false;
