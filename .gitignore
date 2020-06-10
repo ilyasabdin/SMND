@@ -8,6 +8,11 @@ application/logs/*
 
 !application/*/.htaccess
 
+uploads/
+application/config/config.php
+application/config/database.php
+.tmp*
+
 composer.lock
 
 user_guide_src/build/*
