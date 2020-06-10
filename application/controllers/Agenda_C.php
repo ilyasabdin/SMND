@@ -24,13 +24,14 @@ class Agenda_C extends CI_Controller {
 		$this->load->view('templates/footeragenda');
 	}
 	private function do_upload($isupdate = true){
+		$filename = 'materi-'.date('ymdhms').'.pdf';
 		$config['upload_path']          = './uploads/agenda/';
 		$config['allowed_types']        = 'pdf';
-		$config['file_name']        = 'materi-'.date('ymdhms').'.pdf';
+		$config['file_name']        = $filename;
 		$this->load->library('upload');
 		$this->upload->initialize($config);
 		if ($this->upload->do_upload('materi')){
-			return $this->upload->data('file_name');
+			return $filename;
 		}else{
 			if ($isupdate){return true;}
 			d($this->upload->display_errors());
@@ -114,7 +115,6 @@ class Agenda_C extends CI_Controller {
 		}else{
 			$post = $this->input->post(null, TRUE);
 			$post['materi'] = $this->do_upload();
-			dd($post['materi']);
 			$agenda = $this->agenda_model->input_agenda($post, $this->session->userdata['id']);
 			if ($agenda){
 				return redirect(
