@@ -8,7 +8,7 @@ application/logs/*
 
 !application/*/.htaccess
 
-uploads/
+uploads/*
 application/config/config.php
 application/config/database.php
 .tmp*
