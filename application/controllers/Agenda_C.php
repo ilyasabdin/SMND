@@ -114,6 +114,7 @@ class Agenda_C extends CI_Controller {
 		}else{
 			$post = $this->input->post(null, TRUE);
 			$post['materi'] = $this->do_upload();
+			dd($post['materi']);
 			$agenda = $this->agenda_model->input_agenda($post, $this->session->userdata['id']);
 			if ($agenda){
 				return redirect(
