@@ -75,12 +75,17 @@ const quill = new Quill('#quillContainer',{
 if (window.delta){
 	// quill.setContents(window.delta);
 	let quilinput =  $('input[name="catatan_notula"]');
-	console.log(quilinput);
 	if (quilinput.length){
-		quilinput.val(JSON.stringify(window.delta));
-		$('form').submit(function (e) {
-			quilinput.val(JSON.stringify(quill.getContents()));
-		})
+		try {
+			quilinput.val(JSON.stringify(window.delta));
+			$('form').submit(function (e) {
+				let quilstring = $('.ql-editor')[0].innerHTML;
+				quilinput.val(quilstring);			
+			})
+		} catch (e) {
+			alert("eerrrrr")
+		}
+
 	}
 }
 function getCommonData(){
@@ -122,35 +127,41 @@ $('#submit').on('submit', function (e) {
 	e.preventDefault();
 	let formdata = new FormData();
 	let dataobject = {};
-	[getMateriData(),getCommonData(), getCatatanData(), getPesertaData()].forEach(function (item) {
-		dataobject = {...dataobject, ...item}
-	})
-	Object.keys(dataobject).forEach(function (name) {
-		formdata.append(name, dataobject[name]);
-	});
-	photoCollections.forEach(function (item) {
-		formdata.append('image[]', item.blob,item.itemid+'.jpg');
-	});
-	let request = $.ajax({
-		url: window.saveurl,
-		type: "post",
-		data : formdata,
-		cache: false,
-		contentType: false,
-		processData: false,
-	});
-	request.done(function (e) {
-		e = JSON.parse(e);
-		alert(e.message ? e.message :  'Notula berhasil di simpan');
-		if (! e.errors){
-			window.location.href = e.redirect;
-		}else{
-			Object.keys(e.errors).forEach(function (item) {
-				let target = $(`[data-target="${item}"]`);
-				if (target.length){
-					target.text(e.errors[item])
-				}
-			})
-		}
-	})
+	let peserta = getPesertaData();
+	console.log(peserta);
+	if (peserta["peserta[]"] && Array.isArray(peserta["peserta[]"]) && peserta['peserta[]'].length ) {
+		[getMateriData(),getCommonData(), getCatatanData(), getPesertaData()].forEach(function (item) {
+			dataobject = {...dataobject, ...item}
+		})
+		Object.keys(dataobject).forEach(function (name) {
+			formdata.append(name, dataobject[name]);
+		});
+		photoCollections.forEach(function (item) {
+			formdata.append('image[]', item.blob,item.itemid+'.jpg');
+		});
+		let request = $.ajax({
+			url: window.saveurl,
+			type: "post",
+			data : formdata,
+			cache: false,
+			contentType: false,
+			processData: false,
+		});
+		request.done(function (e) {
+			e = JSON.parse(e);
+			alert(e.message ? e.message :  'Notula berhasil di simpan');
+			if (! e.errors){
+				window.location.href = e.redirect;
+			}else{
+				Object.keys(e.errors).forEach(function (item) {
+					let target = $(`[data-target="${item}"]`);
+					if (target.length){
+						target.text(e.errors[item])
+					}
+				})
+			}
+		})
+	}else{
+		alert("Peserta yang hadir belum di masukan")
+	}
 });

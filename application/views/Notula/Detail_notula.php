@@ -39,7 +39,7 @@
                         <th>Catatan</th>
                         <td>
                             <div id="quillContainer">
-                              <?=$detail->catatan?>
+                              <?=$detail->catatan_notula?>
                             </div>
                         </td>
                     </tr>

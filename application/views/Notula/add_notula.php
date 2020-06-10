@@ -98,7 +98,7 @@
                 </div>
                 <div class="form-group">
                     <label>Tambahkan Materi PDF*</label>
-                    <input type="file" name="materi" id="materi" class="form-control"/>
+                    <input type="file" name="materi" id="materi" accept="application/pdf" class="form-control"/>
                 </div>
                 <div class="card">
                     <h3 class="card-header">
@@ -108,7 +108,7 @@
                         <div class="row justify-content-center">
                             <div class="col-6">
                                 <div class="" id="camera-container">
-                                
+
                                 </div>
                             </div>
                         </div>

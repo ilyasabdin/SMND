@@ -25,7 +25,6 @@ class Admin_C extends CI_Controller {
         $data['total'] = $this->agenda_model->totalAgenda();
         $data['totaln'] = $this->notula_model->totalNotula();
         $data['notulaterbaru'] = $this->notula_model->getNotulaTerbaru();
-        
         $this->load->view('templates/header',$data);
         $this->load->view('templates/Sidebar',$data);
         $this->load->view('templates/Topbar',$data);
@@ -42,6 +41,7 @@ class Admin_C extends CI_Controller {
         $data['row'] = $this->user_model->get();
         $data['notif'] = $this->status_model->getNotif();
         //$data['row'] = $this->user_model->getrole_id();
+
         $this->load->view('templates/header',$data);
         $this->load->view('templates/Sidebar',$data);
         $this->load->view('templates/Topbar',$data);

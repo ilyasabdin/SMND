@@ -11,11 +11,11 @@
 
       <!-- Divider -->
 
-      
+
       <!-- Divider -->
       <hr class="sidebar-divider">
       <!-- query menu -->
-      <?php 
+      <?php
       $role_id = $this->session->userdata('role_id');
       $queryMenu = "SELECT `user_menu`.`id`,`menu`
                     FROM `user_menu` JOIN `user_acces_menu`
@@ -30,13 +30,13 @@
        <!-- LOOPING MENU -->
       <?php foreach ($menu as $m): ?>
       <div class="sidebar-heading">
-          <?= 
+          <?=
             $m['menu'];
            ?>
       </div>
 
       <!-- SUBMENU -->
-      <?php 
+      <?php
       $menuId = $m['id'];
       $querySubMenu= "SELECT *
                       FROM `user_sub_menu` JOIN `user_menu`
@@ -53,10 +53,10 @@
             <li class="nav-item">
           <?php endif; ?>
 
-              <a class="nav-link" href="<?= base_url($sm['url']); ?>">
+              <a class="nav-link" target="<?=$sm["url"] === "Dokumentasi_video_C"?"_blank":"_self"?>" href="<?= base_url($sm['url']); ?>">
               <i class="<?= $sm['icon'];  ?>"></i>
               <span><?= $sm['judul']; ?></span></a>
-          </li>    
+          </li>
          <?php endforeach ?>
          <!-- Divider -->
           <hr class="sidebar-divider">

@@ -68,6 +68,7 @@
                                     <input
                                         name="<?=$config['name']?>"
                                         type="file"
+                                        accept="<?=isset($config["accept"])?$config["accept"]:"*"?>"
                                         class="custom-file-input"
                                         id="inputGroupFile01"
                                         aria-describedby="inputGroupFileAddon01">
@@ -75,6 +76,13 @@
                                 </div>
                             </div>
                             <?php
+                            if (isset($config["helper"])) {
+                              ?>
+                              <small class="d-block text-right">
+                                *<?=$config["helper"]?>
+                              </small>
+                              <?php
+                            }
                             break;
                         }
                         case 'textarea':{

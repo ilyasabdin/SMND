@@ -12,10 +12,10 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          
+
 
           <!-- Topbar Navbar -->
-          
+
           <ul class="navbar-nav ml-1">
               <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
@@ -37,6 +37,10 @@
               </div>
             </li>
 
+            <?php
+            $role = $this->session->userdata("role_id");
+            if ($role!= 2 and $role != 4) {
+            ?>
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,6 +70,9 @@
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>
+            <?php
+            }
+            ?>
 
           </ul>
           <ul class="navbar-nav ml-auto">
@@ -76,7 +83,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><b> <?= $user['nama']; ?></b></span>
-                
+
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -99,7 +106,7 @@ $('.notification-container').on('click',function(e){
   $.ajax({
     url : '<?php echo(base_url('Admin_C/DeleteNotif/')) ?>' +'/' +id,
     success : function (e){
-      
+
     }
   })
 

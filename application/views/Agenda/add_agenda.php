@@ -20,7 +20,7 @@ $configs = [
     ['name'=>'tanggal','type'=>'datetime','label'=>'Tanggal'],
     ['name'=>'pemimpin','label'=>'Pemimpin','type'=>'lstSelected','options'=>$usersdata],
     ['name'=>'peserta[]','multiple'=>true,'label'=>'Peserta','type'=>'lstSelected','options'=>$usersdata],
-    ['name'=>'materi','fullwidth'=>true,'label'=>'Materi','type'=>'file'],
+    ['name'=>'materi','fullwidth'=>true,'label'=>'Materi','type'=>'file',"accept"=>"application/pdf", "helper"=>"File dengan format pdf"],
     ['name'=>'catatan','fullwidth'=>true,'label'=>'Catatan','type'=>'textarea'],
 ];
 if (isset($agenda_value)){

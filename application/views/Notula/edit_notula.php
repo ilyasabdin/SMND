@@ -78,10 +78,11 @@
                     Catatan rapat
                 </p>
                 <div id="quillContainer" class="">
+                  <?=$edit->catatan_notula?>
                 </div>
-                <input type="hidden" name="catatan_notula">
+                <input type="hidden" name="catatan_notula" >
                 <script>
-                    window.delta = <?=$edit->catatan_notula?$edit->catatan_notula : '""' ?>
+                    window.delta = <?=$edit->catatan_notula?"'".$edit->catatan_notula."'" : '""' ?>
                 </script>
                 <div class="form-group">
                     <label>Tambahkan Materi PDF*</label>

@@ -38,9 +38,9 @@
                         <?php
                         $roles = [
                             ['value'=>1,'label'=>'admin'],
-                            ['value'=>2,'label'=>'sekertaris'],
+                            ['value'=>4,'label'=>'sekertaris'],
                             ['value'=>3,'label'=>'ketua'],
-                            ['value'=>4,'label'=>'user'],
+                            ['value'=>2,'label'=>'peserta'],
                         ];
                         ?>
                         <div class="col-12 my-3">
@@ -82,4 +82,3 @@
       }
 </script>
 <!-- End of Main Content -->
-

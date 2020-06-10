@@ -172,12 +172,19 @@ class Agenda_C extends CI_Controller {
 		$validations = [
 			[
 				'name'=>'judul',
-				'rule'=>''.(!$isupdate?'|is_unique[agenda.judul]':''),
+				'rule'=>''.(!$isupdate?'|is_unique[agenda.judul]|alpha_numeric_spaces|max_length[128]':''),
 				'message'=>[
-					'is_unique' => 'Judul Sudah Digunakan!'
+					'is_unique' => 'Judul Sudah Digunakan!',
+					"alpha_numeric_spaces"=>"Judul tidak sesuai",
+					'max_length'=>"Judul terlalu panjang"
 				]
 			],
-			['name'=>'pembahasan'],
+			['name'=>'pembahasan','rule'=>"|max_length[256]|alpha_numeric_spaces", "message"=>
+			[
+				'max_length'=>"Pembahasan terlalu panjang",
+				"alpha_numeric_spaces"=>"Judul tidak sesuai",
+			]
+		],
 			['name'=>'tempat'],
 			['name'=>'pemimpin'],
 			['name'=>'peserta[]'],

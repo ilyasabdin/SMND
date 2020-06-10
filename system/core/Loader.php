@@ -324,7 +324,7 @@ class CI_Loader {
 			}
 		}
 
-		$model = ucfirst($model);
+		$model = ($model);
 		if ( ! class_exists($model, FALSE))
 		{
 			foreach ($this->_ci_model_paths as $mod_path)
@@ -647,6 +647,7 @@ class CI_Loader {
 			// unable to load the helper
 			if ( ! isset($this->_ci_helpers[$helper]))
 			{
+
 				show_error('Unable to load the requested file: helpers/'.$helper.'.php');
 			}
 		}
@@ -1076,9 +1077,14 @@ class CI_Loader {
 			// Does the file exist? No? Bummer...
 			if ( ! file_exists($filepath))
 			{
+				$filepath2 = $path.'libraries/'.$subdir.strtolower($class).'.php';
+				if (file_exists($filepath2)) {
+					$filepath = $filepath2;
+					include_once($filepath);
+					return $this->_ci_init_library($class, '', $params, $object_name);
+				}
 				continue;
 			}
-
 			include_once($filepath);
 			return $this->_ci_init_library($class, '', $params, $object_name);
 		}
@@ -1088,7 +1094,6 @@ class CI_Loader {
 		{
 			return $this->_ci_load_library($class.'/'.$class, $params, $object_name);
 		}
-
 		// If we got this far we were unable to find the requested class.
 		log_message('error', 'Unable to load the requested class: '.$class);
 		show_error('Unable to load the requested class: '.$class);
